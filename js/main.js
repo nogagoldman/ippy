@@ -43,7 +43,7 @@ $(document).ready(function () {
             e.removeClass("animated tada");
             d.text(t);
         }, 1000);
-        $('#boxfun .copyme').remove()
+        //$('#boxfun .copyme').remove()
     });
 
     var clipboard = new Clipboard('.copy');
