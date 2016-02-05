@@ -1,0 +1,295 @@
+body {
+    text-align: center;
+    color: #3B3C40;
+    font-family: 'Hind', sans-serif;
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+.greenbox {
+    background: rgba(132, 230, 197, 0.82);
+    border: 5px solid #3B3C40;
+    border-radius: 2px;
+}
+
+.headerbox {
+    background: white;
+    max-width: 350px;
+    width: 60%;
+    margin: auto;
+    border: 5px solid #3B3C40;
+    border-radius: 2px;
+    font-size: 1.5em;
+    transform: translateY(-50%);
+    margin-top: -2px;
+}
+
+h1 {
+    margin: .5px;
+}
+
+.clicktocopy {
+    margin-top: -30px;
+    font-size: .9em;
+}
+
+.cuteslider {
+    padding-bottom: 50px;
+    padding-top: 30px;
+    max-width: 400px;
+    width: 60%;
+    margin: auto;
+    position: relative;
+}
+
+.thing {
+    position: relative;
+}
+
+.cuteslider .rectangle {
+    border: 4px solid #3B3C40;
+    border-radius: 0px;
+    width: 4px;
+    position: relative;
+    display: inline-block;
+    height: 20px;
+}
+
+.cuteslider .group {
+    display: inline;
+    float: left;
+    width: 50px;
+}
+
+.cuteslider .group.right {
+    float: right;
+}
+
+.cuteslider .line {
+    background: #3B3C40;
+    width: 86%;
+    display: inline-block;
+    height: 4px;
+    position: absolute;
+    left: 7%;
+    top: 12px;
+}
+
+.cuteslider img {
+    width: 75px;
+    position: absolute;
+    margin-top: -10px;
+    z-index: 1;
+}
+
+.allboxes .box {
+    border: 4px solid #3B3C40;
+    border-radius: 2px;
+    background: white;
+    flex: 1;
+    width: 31.3%;
+    float: left;
+    height: auto;
+    margin: 1.8% 1%;
+    box-sizing: border-box;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    /* Vertical Centering */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* Horizontal Centering */
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    transition: all .2s;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 680px) {
+    .allboxes .box {
+        width: 48%;
+    }
+}
+
+@media (max-width: 400px) {
+    .allboxes .box {
+        width: 98%;
+    }
+}
+
+.allboxes .copyme {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -40px;
+    font-weight: normal;
+    font-size: 14px;
+    color: white;
+    background-color: #3B3C40;
+    padding-bottom: 4px;
+    padding-top: 8px;
+    opacity: 0;
+    transition: all .2s;
+}
+
+.allboxes .box:hover:not(.animated) .copyme {
+    opacity: 1;
+    bottom: 0px;
+}
+
+.allboxes .box:hover div:first-child {
+    -webkit-animation-name: shakee;
+    -moz-animation-name: shakee;
+    -o-animation-name: shakee;
+    animation-name: shakee;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.allboxes .box.animated {
+    color: white;
+    background: #3B3C40;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.allboxes a {
+    color: #3B3C40;
+}
+
+.allboxes .box:before {
+    content: '';
+    float: left;
+    padding-top: 80%;
+}
+
+.allboxes {
+    list-style: none;
+    margin: 0;
+    padding: 50px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.allboxes:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.whitebox {
+    border-left: 6px solid white;
+    border-right: 6px solid transparent;
+    margin-top: 2px;
+}
+
+.motherbox {
+    border-right: 8px solid #84E6C5;
+    max-width: 700px;
+    width: 100%;
+    margin: 60px auto;
+    position: relative;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border: 4px solid #3B3C40;
+    border-radius: 50%;
+}
+
+.lines {
+    position: relative;
+    transform: rotate(20deg);
+}
+
+.lines:before,
+.lines:after {
+    content: '';
+    width: 30px;
+    display: inline-block;
+    background: #3B3C40;
+    height: 4px;
+    position: absolute;
+}
+
+.lines:after {
+    top: 12px;
+}
+
+.shape {
+    position: absolute;
+}
+
+#slinky {
+    cursor: pointer;
+}
+
+.shakee {
+    -webkit-animation-name: shakee;
+    -moz-animation-name: shakee;
+    -o-animation-name: shakee;
+    animation-name: shakee;
+}
+
+@-webkit-keyframes shakee {
+    0% {
+        -webkit-transform: rotate(8deg);
+    }
+    50% {
+        -webkit-transform: rotate(-8deg);
+    }
+    100% {
+        -webkit-transform: rotate(8deg);
+    }
+}
+
+@-moz-keyframes fadeInUp {
+    0% {
+        -moz-transform: rotate(8deg);
+    }
+    50% {
+        -moz-transform: rotate(-8deg);
+    }
+    100% {
+        -moz-transform: rotate(8deg);
+    }
+}
+
+@-o-keyframes fadeInUp {
+    0% {
+        -o-transform: rotate(8deg);
+    }
+    50% {
+        -o-transform: rotate(-8deg);
+    }
+    100% {
+        -o-transform: rotate(8deg);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: rotate(8deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(8deg);
+    }
+}
