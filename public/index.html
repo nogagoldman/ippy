@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/main.css">
-    <link href='https://fonts.googleapis.com/css?family=Hind:700,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:600,400' rel='stylesheet' type='text/css'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta name="MobileOptimized" content="width">
@@ -15,19 +15,26 @@
 </head>
 
 <body>
+    <div id="menu" class="fade">
+        <div class="popup">
+            <a href="javascript:void(0)" class="close toggle">
+                <div>+</div>
+            </a>
+            <form>
+                <h3>type your ippy:</h3>
+                <h4>16 characters or less</h4>
+                <input id="in" type="text" name="content" maxlength="16" />
+                <input type="submit" class="button" value="POST" />
+            </form>
+        </div>
+    </div>
     <div class="motherbox">
         <div class="greenbox">
             <div class="whitebox">
-
-                <div class="headerwrapper">
-
-                    <div class="headerbox">
-                        <h1>ippy</h1>
-                    </div>
-                    <div class="clicktocopy">slide to rearrange</div>
-
+                <div class="headerbox">
+                    <h1>ippy</h1>
                 </div>
-
+                <div class="clicktocopy">slide to rearrange</div>
                 <div class="cuteslider" id="sliderfun">
                     <div class="thing">
                         <div class="group left">
@@ -49,71 +56,74 @@
                     </div>
                 </div>
                 <h2> click 2 copy</h2>
-                <ul class="allboxes" id="boxfun">
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="(o˘◡˘o)" data-happiness="7">
-                        <li class="box">
-                            <div>(o˘◡˘o)</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="＼(＾▽＾)／" data-happiness="9">
-                        <li class="box">
-                            <div>＼(＾▽＾)／</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="&lt;(￣︶￣)&gt;" data-happiness="6">
-                        <li class="box">
-                            <div>&lt;(￣︶￣)&gt;</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="(=^ ◡ ^=)" data-happiness="8">
-                        <li class="box">
-                            <div>(=^ ◡ ^=)</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="┐(︶▽︶)┌" data-happiness="4">
-                        <li class="box">
-                            <div>┐(︶▽︶)┌</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="&lt;ﾉ(⌒ω⌒)ﾉ&gt;" data-happiness="5">
-                        <li class="box ">
-                            <div>&lt;ﾉ(⌒ω⌒)ﾉ&gt;</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="＼(º □ º l|l)/" data-happiness="2">
-                        <li class="box ">
-                            <div>＼(º □ º l|l)/</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="(￣o￣) zzZZzzZZ" data-happiness="3">
-                        <li class="box ">
-                            <div>(￣o￣) zzZZzzZZ</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                    <a href="#" class="copy" data-clipboard-action="copy" data-clipboard-text="&lt;ᕙ(⇀‸↼‶)ᕗ&gt;" data-happiness="1">
-                        <li class="box ">
-                            <div>&lt;ᕙ(⇀‸↼‶)ᕗ&gt;</div>
-                            <div class="copyme"> copy me!
-                            </div>
-                        </li>
-                    </a>
-                </ul>
+                <div class="content">
+                    <ul class="allboxes" id="boxfun">
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="(o˘◡˘o)" data-happiness="7">
+                            <li class="box">
+                                <div>(o˘◡˘o)</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="＼(＾▽＾)／" data-happiness="9">
+                            <li class="box">
+                                <div>＼(＾▽＾)／</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="&lt;(￣︶￣)&gt;" data-happiness="6">
+                            <li class="box">
+                                <div>&lt;(￣︶￣)&gt;</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="(=^ ◡ ^=)" data-happiness="8">
+                            <li class="box">
+                                <div>(=^ ◡ ^=)</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="┐(︶▽︶)┌" data-happiness="4">
+                            <li class="box">
+                                <div>┐(︶▽︶)┌</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="&lt;ﾉ(⌒ω⌒)ﾉ&gt;" data-happiness="5">
+                            <li class="box ">
+                                <div>&lt;ﾉ(⌒ω⌒)ﾉ&gt;</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="＼(º □ º l|l)/" data-happiness="2">
+                            <li class="box ">
+                                <div>＼(º □ º l|l)/</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="(￣o￣) zzZZzzZZ" data-happiness="3">
+                            <li class="box ">
+                                <div>(￣o￣) zzZZzzZZ</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="&lt;ᕙ(⇀‸↼‶)ᕗ&gt;" data-happiness="1">
+                            <li class="box ">
+                                <div>&lt;ᕙ(⇀‸↼‶)ᕗ&gt;</div>
+                                <div class="copyme"> copy me!
+                                </div>
+                            </li>
+                        </a>
+                    </ul>
+                    <a id="toggle" href="javascript:void(0)" class="button toggle">make your own ippy!</a>
+                </div>
             </div>
             <div class="circle shape " style="top:75%; left: -15px "> </div>
             <div class="circle shape " style="top:40%; right: -70px "> </div>

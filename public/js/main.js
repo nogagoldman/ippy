@@ -54,4 +54,22 @@ $(document).ready(function () {
         console.log(e);
     });
 
+    // toggle popup
+    // mobile menu toggle
+    var $toggle = $('.toggle');
+    var $nav = $('#menu');
+    $toggle.click(function () {
+        var actionClass = ($nav.hasClass('active') ? 'close' : 'open');
+        if (actionClass == 'open') {
+            $('#in').focus();
+        }
+        $nav.addClass(actionClass);
+        setTimeout(function () {
+            $nav.removeClass(actionClass);
+        }, 600);
+
+        $nav.toggleClass('active');
+        $toggle.toggleClass('active');
+    });
+
 });
