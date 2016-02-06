@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ippy</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Hind:600,400' rel='stylesheet' type='text/css'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+</head>
+
+<body>
+    <div id="menu" class="fade">
+        <div class="popup">
+            <a href="javascript:void(0)" class="close toggle">
+                <div>+</div>
+            </a>
+            <form method="post" action="/ippy">
+                <h3>type your ippy:</h3>
+                <h4>16 characters or less</h4>
+                <input id="in" type="text" name="content" maxlength="16" />
+                <input type="submit" class="button" value="POST" />
+            </form>
+        </div>
+    </div>
+    <div class="motherbox">
+        <div class="greenbox">
+            <div class="whitebox">
+                <div class="headerbox">
+                    <h1>ippy</h1>
+                </div>
+                <div class="clicktocopy">slide to rearrange</div>
+                <div class="cuteslider" id="sliderfun">
+                    <div class="thing">
+                        <div class="group left">
+                            <span class="rectangle"></span>
+                            <div class="text">
+                                ippy
+                            </div>
+                        </div>
+
+                        <div class="group right">
+                            <span class="rectangle"></span>
+                            <div class="text">
+                                ippiest
+                            </div>
+                        </div>
+                        <div class="line">
+                        </div>
+                        <img src="images/slinky.png" alt="slinky" id="slinky">
+                    </div>
+                </div>
+                <h2> click 2 copy</h2>
+                <div class="content">
+                    <ul class="allboxes" id="boxfun">
+                        <% @ippys.each do |ippy| %>
+                            <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="<%= ippy.content %>" data-happiness="<%= ippy.views %>" data-id="<%= ippy.id %>">
+                                <li class="box" data-id="<%= ippy.id %>">
+                                    <div><%= ippy.content %></div>
+                                    <div class="copyme"> copy me!</div>
+                                </li>
+                            </a>
+                        <% end %>
+                    </ul>
+                    <a id="toggle" href="javascript:void(0)" class="button toggle">make your own ippy!</a>
+                </div>
+            </div>
+            <div class="circle shape " style="top:75%; left: -15px "> </div>
+            <div class="circle shape " style="top:40%; right: -70px "> </div>
+            <div class="lines shape " style="top:90%; right: -50px "></div>
+            <div class="lines shape " style="top:20%; left: -60px; transform: rotate(-20deg); "></div>
+            <img class="shape " src="images/pentagon.svg " width="35 " height="35 " style="top:50%; left: -80px; ">
+            <img class="shape " src="images/pentagon.svg " width="35 " height="35 " style="top:15%; right: -80px; ">
+        </div>
+    </div>
+    <script src="js/clipboard.min.js "></script>
+    <script src="js/jquery-2.2.0.min.js "></script>
+    <script src="js/quicksand.js"></script>
+    <script src="js/main.js "></script>
+
+</body>
+
+</html>

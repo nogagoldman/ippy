@@ -373,7 +373,7 @@ h2 {
 .fade.close,
 .fade.open,
 .fade.active {
-    visibility: visible
+    visibility: visible !important;
 }
 
 .fade.close {
@@ -431,6 +431,11 @@ form input[type="text"] {
     border-radius: 2px;
     text-align: center;
     font-size: 20px;
+}
+
+form input {
+    position: relative;
+    z-index: 99999;
 }
 
 .popup .close {

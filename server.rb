@@ -5,12 +5,13 @@ require './helpers'
 
 # home page
 get '/' do
-  File.read(File.join('public', 'index.html'))
+  @ippys = Ippy.all
+  erb :index
 end
 
 # create new ippy
 post '/ippy' do
-  ippy = Ippy.create(content: h(params["content"]), happiness: params["happiness"])
+  ippy = Ippy.create(content: h(params["content"]))
   if ippy.save
     status 200
   else
@@ -18,7 +19,7 @@ post '/ippy' do
   end
 end
 
-# count a view
+# count a view/click
 post '/ippy/:id' do
   ippy = Ippy.get(params[:id])
   ippy.views += 1
@@ -46,4 +47,3 @@ delete '/ippy/:id' do
     status 400
   end
 end
-

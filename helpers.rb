@@ -12,3 +12,8 @@ end
 def h(text)
   Rack::Utils.escape_html(text)
 end
+
+# server static html file from public
+def html(view)
+  File.read(File.join('public', "#{view.to_s}.html"))
+end

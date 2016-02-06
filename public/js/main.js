@@ -43,7 +43,9 @@ $(document).ready(function () {
             e.removeClass("animated tada");
             d.text(t);
         }, 1000);
-        //$('#boxfun .copyme').remove()
+
+        // send a view
+        $.post('/ippy/' + e.attr('data-id'), '', function(){});
     });
 
     var clipboard = new Clipboard('.copy');
@@ -57,19 +59,48 @@ $(document).ready(function () {
     // toggle popup
     // mobile menu toggle
     var $toggle = $('.toggle');
-    var $nav = $('#menu');
-    $toggle.click(function () {
-        var actionClass = ($nav.hasClass('active') ? 'close' : 'open');
+    var $popup = $('#menu');
+    $toggle.click(function (event) {
+        var actionClass = ($popup.hasClass('active') ? 'close' : 'open');
         if (actionClass == 'open') {
-            $('#in').focus();
+            setTimeout(function(){$('#in').focus();}, 100);
         }
-        $nav.addClass(actionClass);
+        $popup.addClass(actionClass);
         setTimeout(function () {
-            $nav.removeClass(actionClass);
+            $popup.removeClass(actionClass);
         }, 600);
 
-        $nav.toggleClass('active');
+        $popup.toggleClass('active');
         $toggle.toggleClass('active');
+
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
     });
 
+    // ajax forms
+    $('form').submit(function(event) {
+        console.log("submitting...");
+        var $this = $(this);
+
+        $.ajax({
+            type: $this.attr('method'),
+            url: $this.attr('action'),
+            data: $this.serialize(),
+            success: function(data) {
+                console.log("success!");
+            },
+            complete: function() {
+                submitting = false;
+            }
+        });
+
+        $this.find('input[type="text"]').val('');
+        $('.toggle:first').click(); // hide form
+        // prevent normal form submit
+        event.preventDefault();
+        return false;
+    });
+
+    //$('input[')
 });
