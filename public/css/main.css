@@ -578,3 +578,13 @@ input.sending {
 .spinner img {
     max-width: 100%;
 }
+.fakeborder {
+  position: fixed;
+  z-index: 10;
+  bottom:0;
+  width:100%;
+  max-width: 700px;
+  border-top: 4px solid #3B3C40;
+  padding-bottom: 20px;
+  background: #84E6C5;
+}

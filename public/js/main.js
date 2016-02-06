@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#boxfun li").click(function (e) {
+    var boxclick = function (e) {
         var e = $(this);
         if (e.hasClass('animated')) return;
 
@@ -15,7 +15,8 @@ $(document).ready(function () {
 
         // send a view
         $.post('/ippy/' + e.attr('data-id'), '', function(){});
-    });
+    };
+    $("#boxfun li").click(boxclick);
 
     // copy text
     var clipboard = new Clipboard('.copy');
@@ -131,6 +132,7 @@ $(document).ready(function () {
                 done = true;
             } else {
                 $box.append(data);
+                $("#boxfun li").click(boxclick);
             }
         }).complete(function(){
             loading = false;
