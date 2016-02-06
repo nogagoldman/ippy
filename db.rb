@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'data_mapper'
+require 'dm-chunked_query'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/ippy.db")
 

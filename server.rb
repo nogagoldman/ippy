@@ -5,7 +5,19 @@ require './helpers'
 
 # home page
 get '/' do
-  @ippys = Ippy.all
+  @ippys = get_ippys('popular')
+  erb :index
+end
+
+# new
+get '/new' do
+  @ippys = get_ippys('new')
+  erb :index
+end
+
+# random
+get '/random' do
+  @ippys = get_ippys('random')
   erb :index
 end
 
@@ -30,10 +42,16 @@ post '/ippy/:id' do
   end
 end
 
-# get all ippys
-get '/ippy' do
-  ippys = Ippy.all
-  json :ippys => ippys
+# get all ippys (paginated)
+get '/ippy.?:format?' do
+  order = params[:order_by] || 'new'
+  @ippys = get_ippys(order)
+
+  if params[:format] == 'json'
+    json :ippys => @ippys
+  else
+    erb :_ippy_collection
+  end
 end
 
 # delete an ippy

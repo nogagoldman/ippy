@@ -23,16 +23,30 @@
             <form method="post" action="/ippy">
                 <h3>type your ippy:</h3>
                 <h4>16 characters or less</h4>
-                <input id="in" type="text" name="content" maxlength="16" />
-                <input id="send" type="submit" class="button" value="POST" />
+                <div><input id="in" type="text" name="content" maxlength="16" /></div>
+                <input type="submit" class="button" value="POST" />
             </form>
         </div>
     </div>
     <div class="motherbox">
         <div class="greenbox">
             <div class="whitebox">
-                <div class="headerbox">
-                    <h1>ippy</h1>
+                <div class="hwrap">
+                    <div class="headerbox">
+                        <h1>ippy</h1>
+                    </div>
+                    <div class="stuff">
+                        <nav>
+                          <ul>
+                            <li><a class="new" href="/new">new</a></li>
+                            <li><a href="/popular">popular</a></li>
+                            <li><a href="/random" class="error">random</a></li>
+                          </ul>
+                        </nav>
+                        <div class="create">
+                            <a id="toggle" href="javascript:void(0)" class="button toggle">make your own</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="clicktocopy">slide to rearrange</div>
                 <div class="cuteslider" id="sliderfun">
@@ -58,7 +72,7 @@
                 <h2> click 2 copy</h2>
                 <div class="content">
                     <ul class="allboxes" id="boxfun">
-                        <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="(o˘◡˘o)" data-happiness="7">
+                                              <a href="javascript:void(0)" class="copy" data-clipboard-action="copy" data-clipboard-text="(o˘◡˘o)" data-happiness="7">
                             <li class="box">
                                 <div>(o˘◡˘o)</div>
                                 <div class="copyme"> copy me!
@@ -122,7 +136,7 @@
                             </li>
                         </a>
                     </ul>
-                    <a id="toggle" href="javascript:void(0)" class="button toggle">make your own ippy!</a>
+                    <div class="spinner animated infinite"><img src="images/slinky.png" alt="slinky" id="slinky"></div>
                 </div>
             </div>
             <div class="circle shape " style="top:75%; left: -15px "> </div>

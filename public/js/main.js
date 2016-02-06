@@ -1,35 +1,4 @@
 $(document).ready(function () {
-    var slinky = $("#slinky");
-    var clicking = false;
-
-    slinky.mousedown(function (e) {
-        clicking = true
-        e.stopPropagation();
-        e.preventDefault();
-        return false;
-    })
-    $(document).mouseup(function (event) {
-        clicking = false
-    })
-    $(document).mousemove(function (event) {
-        if (!clicking) return
-        var left = slider.offset().left + slinky.width() / 2;
-        var pos = Math.min(Math.max(event.pageX - left, sliderleft), sliderright);
-        slinky.css("left", pos)
-        var ippiness = Math.floor((pos / (sliderright - sliderleft)) * 8) + 1;
-        var results = $('#boxfun').find('a').sort(function (a, b) {
-            var v = Math.abs(parseInt($(a).attr('data-happiness')) - ippiness);
-            var j = Math.abs(parseInt($(b).attr('data-happiness')) - ippiness);
-            return v - j;
-        });
-        results.appendTo('#boxfun');
-    })
-
-    var slider = $("#sliderfun");
-    var sliderleft = slinky.width() / 2 - 10;
-    console.log(sliderleft);
-    var sliderright = slider.width() - slinky.width() - sliderleft;
-    console.log(sliderright);
 
     $("#boxfun li").click(function (e) {
         var e = $(this);
@@ -48,6 +17,7 @@ $(document).ready(function () {
         $.post('/ippy/' + e.attr('data-id'), '', function(){});
     });
 
+    // copy text
     var clipboard = new Clipboard('.copy');
     clipboard.on('success', function (e) {
         console.log(e);
@@ -57,7 +27,6 @@ $(document).ready(function () {
     });
 
     // toggle popup
-    // mobile menu toggle
     var $toggle = $('.toggle');
     var $popup = $('#menu');
     $toggle.click(function (event) {
@@ -68,7 +37,7 @@ $(document).ready(function () {
         $popup.addClass(actionClass);
         setTimeout(function () {
             $popup.removeClass(actionClass);
-        }, 600);
+        }, 200);
 
         $popup.toggleClass('active');
         $toggle.toggleClass('active');
@@ -78,29 +47,95 @@ $(document).ready(function () {
         return false;
     });
 
+    // click away to hide popup
+    var $toggle = $('.toggle:first');
+    $(".fade").click(function(){
+        $toggle.click();
+    });
+
+    $('.popup').click(function(e){
+        e.stopPropagation();
+    });
+
     // ajax forms
-    $('form').submit(function(event) {
-        console.log("submitting...");
+    $('form').submit(function(e) {
         var $this = $(this);
+
+        // prevent multi-submit
+        if ($this.data('submitted') == true) {
+            e.preventDefault();
+            return false;
+        }
+
+        // error validation
+        var $input = $this.find('input[type="text"]:first');
+        if ($input.val().length < 2) {
+            $input.parent().addClass('animated shake');
+            setTimeout(function(){$input.parent().removeClass('animated shake');}, 1000);
+            $input.focus();
+            $input.next().addClass('animated zoomOut');
+            e.preventDefault();
+            return false;
+        }
+
+        $this.data('submitted', true);
 
         $.ajax({
             type: $this.attr('method'),
             url: $this.attr('action'),
             data: $this.serialize(),
             success: function(data) {
-                console.log("success!");
+                $this.find('input[type="text"]').val('');
+                $('.popup').addClass('animated fast fadeOutUp');
+                setTimeout(function(){$('.popup').removeClass('animated fadeOutUp');}, 1000);
+                setTimeout(function(){$('.toggle:first').click(); /* hide form */}, 500);
+            },
+            error: function() {
+                $this.addClass('error');
+                $this.addClass('animated shake');
+                setTimeout(function(){$this.removeClass('animated shake');}, 1000);
+                $this.find('input:last').val('ERROR').addClass('error').removeClass('sending');
             },
             complete: function() {
-                submitting = false;
+                $this.data('submitted', false);
+                setTimeout(function(){
+                    $this.find('input:last').val('POST').removeClass('error sending');
+                }, 1000);
             }
         });
 
-        $this.find('input[type="text"]').val('');
-        $('.toggle:first').click(); // hide form
+        $this.find('input:last').val('SENDING...').addClass('sending');
+
         // prevent normal form submit
-        event.preventDefault();
+        e.preventDefault();
         return false;
     });
 
-    //$('input[')
+    // infinite scroll
+    var loading = false;
+    var page = 1;
+    var lead = 200;
+    var $box = $('#boxfun');
+    var done = false;
+    var order = $('body').attr('data-page');
+    $(window).scroll(function(e){
+        if (done || loading || ($(window).scrollTop() < $(document).height() - $(window).height() - lead))
+            return;
+
+        page++;
+        loading = true;
+        $box.addClass('loading');
+
+        $.get('/ippy?page=' + page + '&order_by=' + order).success(function(data) {
+            if (data.length == 0) {
+                done = true;
+            } else {
+                $box.append(data);
+            }
+        }).complete(function(){
+            loading = false;
+            $box.removeClass('loading');
+        });
+        //console.log($window.scrollTop());
+    });
 });

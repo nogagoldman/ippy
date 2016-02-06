@@ -1,7 +1,8 @@
 body {
     text-align: center;
     color: #3B3C40;
-    font-family: 'Hind', sans-serif;
+    background:#fff !important;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     overflow-x: hidden;
 }
@@ -9,6 +10,7 @@ body {
 a {
     text-decoration: none;
     color: #3B3C40;
+    font-weight: bold;
 }
 
 h1,
@@ -20,22 +22,93 @@ h6 {
     letter-spacing: 0.5px;
 }
 
+ul {
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
 .greenbox {
     background: rgba(132, 230, 197, 0.82);
     border: 5px solid #3B3C40;
     border-radius: 2px;
 }
 
+.hwrap {
+    width: 100%;
+    margin: auto;
+    transform: translateY(-45px);
+    position: relative;
+}
+
+.hwrap:after {
+  margin-bottom: 78px;
+  content: '';
+}
+
 .headerbox {
     background: white;
-    max-width: 350px;
-    width: 60%;
-    margin: auto;
     border: 5px solid #3B3C40;
     border-radius: 2px;
     font-size: 1.5em;
-    transform: translateY(-50%);
-    margin-top: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+.hwrap .headerbox, .hwrap .stuff {
+  max-width: 350px;
+  width:60%;
+  height:78px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  transition: all .2s;
+}
+
+.hwrap.scoot .headerbox {
+  margin-left:0;
+  margin-right: inherit;
+}
+
+.hwrap .stuff {
+  max-width: 350px;
+  margin-top: -4px;
+}
+
+.hwrap .button {
+  margin: 0;
+  width:100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.hwrap .button, nav ul li a {
+  font-size: 15px;
+  padding: 0.3em 0;
+}
+
+nav ul li {
+  float:left;
+  display: inline-block;
+  width: 33.33333333%;
+  box-sizing: border-box;
+  border: 4px solid #3B3C40;
+  border-bottom: 0;
+}
+
+nav ul li a {
+  display: block;
+}
+
+nav ul li:not(:last-child) {
+  border-right: 0;
+}
+
+nav ul li:first-child {
+  border-top-left-radius: 2px;
+}
+nav ul li:last-child {
+  border-top-right-radius: 2px;
+  float:right;
 }
 
 h1 {
@@ -52,7 +125,7 @@ h1 {
 h2 {
     font-weight: bold;
     font-size: 1.5em;
-    margin-top: 70px;
+    margin-top: 0;
     margin-bottom: 10px;
 }
 
@@ -216,7 +289,6 @@ h2 {
 .whitebox {
     border-left: 6px solid white;
     border-right: 6px solid transparent;
-    margin-top: 2px;
 }
 
 .motherbox {
@@ -264,8 +336,6 @@ h2 {
 }
 
 .button {
-    color: #3B3C40;
-    font-weight: bold;
     font-size: 17px;
     padding: 0.4em;
     background-color: #FFECAB;
@@ -341,6 +411,23 @@ h2 {
     100% {
         transform: rotate(8deg);
     }
+}
+
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@-o-keyframes spin {
+    from { -o-transform: rotate(0deg); }
+    to { -o-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
 
 .fade.active + .motherbox {
@@ -434,8 +521,7 @@ form input[type="text"] {
 }
 
 form input {
-    position: relative;
-    z-index: 99999;
+    transition: all .2s;
 }
 
 .popup .close {
@@ -449,4 +535,45 @@ form input {
 
 .popup .close div {
     transform: rotate(45deg);
+}
+
+.error, .random {
+    background-color: #FFA1A5;
+}
+
+.new {
+  background-color: #CEBFFF;
+}
+
+.popular {
+  background-color: rgb(146, 235, 206);
+}
+
+.new .motherbox {
+  border-right: 4px solid #CEBFFF;
+}
+
+.random .motherbox {
+  border-right: 4px solid #FFA1A5;
+}
+
+input.sending {
+    background-color: transparent;
+}
+
+.loading + .spinner {
+    display: inline-block;
+    width: 100px;
+}
+
+.spinner {
+    display: none;
+    -webkit-animation-name: spin;
+    -moz-animation-name: spin;
+    -o-animation-name: spin;
+    animation-name: spin;
+}
+
+.spinner img {
+    max-width: 100%;
 }
