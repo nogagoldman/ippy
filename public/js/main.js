@@ -1,21 +1,34 @@
-!function() {
+! function () {
+    (function ($) {
+        // adds classes then removes it after animations complete
+        $.fn.hotClass = function (classList, callback) {
+            this.addClass(classList);
+            var onAnimationEnd = function ($this) {
+                return function (e) {
+                    $this.removeClass(classList);
+                    if (callback) callback(e);
+                };
+            };
+            this.one('webkitAnimationEnd oAnimationEnd msAnimationEnd animationend', onAnimationEnd(this));
+        };
+    }(jQuery));
+
     $(document).ready(function () {
 
         var boxclick = function (e) {
             var e = $(this);
             if (e.hasClass('animated')) return;
 
-            e.addClass("animated tada");
             var d = e.find('div:first');
             var t = d.text();
             d.text("ip ip, hooray!");
-            setTimeout(function () {
-                e.removeClass("animated tada");
+            e.hotClass('animated tada', function () {
                 d.text(t);
-            }, 1000);
+            });
 
             // send a view
-            $.post('/ippy/' + e.attr('data-id'), '', function(){});
+            var id = e.attr('data-id');
+            if (id) $.get('/ippy/' + id);
         };
         $("#boxfun li").click(boxclick);
 
@@ -34,7 +47,9 @@
         $toggle.click(function (event) {
             var actionClass = ($popup.hasClass('active') ? 'close' : 'open');
             if (actionClass == 'open') {
-                setTimeout(function(){$('#in').focus();}, 100);
+                setTimeout(function () {
+                    $('#in').focus();
+                }, 100);
             }
             $popup.addClass(actionClass);
             setTimeout(function () {
@@ -51,16 +66,16 @@
 
         // click away to hide popup
         var $toggle = $('.toggle:first');
-        $(".fade").click(function(){
+        $(".fade").click(function () {
             $toggle.click();
         });
 
-        $('.popup').click(function(e){
+        $('.popup').click(function (e) {
             e.stopPropagation();
         });
 
         // ajax forms
-        $('form').submit(function(e) {
+        $('form').submit(function (e) {
             var $this = $(this);
 
             // prevent multi-submit
@@ -71,9 +86,9 @@
 
             // error validation
             var $input = $this.find('input[type="text"]:first');
-            if ($input.val().length < 2) {
-                $input.parent().addClass('animated shake');
-                setTimeout(function(){$input.parent().removeClass('animated shake');}, 1000);
+            var val = $input.val();
+            if (val.length < 2) {
+                $input.parent().hotClass('animated shake');
                 $input.focus();
                 e.preventDefault();
                 return false;
@@ -85,21 +100,31 @@
                 type: $this.attr('method'),
                 url: $this.attr('action'),
                 data: $this.serialize(),
-                success: function(data) {
+                success: function (data) {
                     $this.find('input[type="text"]').val('');
                     $('.popup').addClass('animated fast fadeOutUp');
-                    setTimeout(function(){$('.popup').removeClass('animated fadeOutUp');}, 1000);
-                    setTimeout(function(){$('.toggle:first').click(); /* hide form */}, 500);
+                    setTimeout(function () {
+                        $('.popup').removeClass('animated fadeOutUp');
+                    }, 1000);
+                    setTimeout(function () {
+                        // hide form
+                        $('.toggle:first').click();
+                        // add new submission to page
+                        if ($('body').attr('data-page') == 'new') {
+                            var $el = $(data);
+                            $el.find('li:first').hotClass('animated bounceIn');
+                            $box.prepend($el);
+                        }
+                    }, 500);
                 },
-                error: function() {
+                error: function () {
                     $this.addClass('error');
-                    $this.addClass('animated shake');
-                    setTimeout(function(){$this.removeClass('animated shake');}, 1000);
+                    $this.hotClass('animated shake');
                     $this.find('input:last').val('ERROR').addClass('error').removeClass('sending');
                 },
-                complete: function() {
+                complete: function () {
                     $this.data('submitted', false);
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $this.find('input:last').val('POST').removeClass('error sending');
                     }, 1000);
                 }
@@ -119,7 +144,7 @@
         var $box = $('#boxfun');
         var done = false;
         var order = $('body').attr('data-page');
-        $(window).scroll(function(e){
+        $(window).scroll(function (e) {
             if (done || loading || ($(window).scrollTop() < $(document).height() - $(window).height() - lead))
                 return;
 
@@ -127,7 +152,7 @@
             loading = true;
             $box.addClass('loading');
 
-            $.get('/ippy?page=' + page + '&order_by=' + order).success(function(data) {
+            $.get('/ippy?page=' + page + '&order_by=' + order).success(function (data) {
                 if (data.length == 0) {
                     console.log(data);
                     done = true;
@@ -135,7 +160,7 @@
                     $box.append(data);
                     $("#boxfun li").click(boxclick);
                 }
-            }).complete(function(){
+            }).complete(function () {
                 loading = false;
                 $box.removeClass('loading');
             });

@@ -28,8 +28,8 @@ gulp.task('css', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('.public/js/*', ['js']);
-    gulp.watch('.public/css/*', ['css']);
+    gulp.watch('./public/js/*', ['js']);
+    gulp.watch('./public/css/*', ['css']);
 });
 
 gulp.task('compile', ['js', 'css']);

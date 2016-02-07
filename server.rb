@@ -26,13 +26,14 @@ post '/ippy' do
   ippy = Ippy.create(content: h(params['content']))
   if ippy.save
     status 200
+    erb :_ippy, :locals => { :ippy => ippy }
   else
     status 400
   end
 end
 
-# count a view/click
-post '/ippy/:id' do
+# count a view (click)
+get '/ippy/:id' do
   ippy = Ippy.get(params[:id])
   ippy.views += 1
   if ippy.save

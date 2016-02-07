@@ -255,7 +255,7 @@ h2 {
     animation-iteration-count: infinite;
 }
 
-.allboxes .box.animated {
+.allboxes .box.animated:not(.bounceIn) {
     color: white;
     background: #3B3C40;
     font-weight: normal;
