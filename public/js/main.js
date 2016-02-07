@@ -74,7 +74,6 @@ $(document).ready(function () {
             $input.parent().addClass('animated shake');
             setTimeout(function(){$input.parent().removeClass('animated shake');}, 1000);
             $input.focus();
-            $input.next().addClass('animated zoomOut');
             e.preventDefault();
             return false;
         }
@@ -129,15 +128,16 @@ $(document).ready(function () {
 
         $.get('/ippy?page=' + page + '&order_by=' + order).success(function(data) {
             if (data.length == 0) {
+                console.log(data);
                 done = true;
             } else {
                 $box.append(data);
                 $("#boxfun li").click(boxclick);
             }
         }).complete(function(){
+            console.log(page);
             loading = false;
             $box.removeClass('loading');
         });
-        //console.log($window.scrollTop());
     });
 });

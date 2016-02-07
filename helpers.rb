@@ -28,10 +28,10 @@ def get_ippys(order)
   
   if order == :new
     # get new
-    ippys = Ippy.all :order => [:created_at.desc], :limit => @per_page, :offset => @page - 1
+    ippys = Ippy.all :order => [:created_at.desc], :limit => @per_page, :offset => (@page - 1)*@per_page
   elsif order == :popular
     # get popular
-    ippys = Ippy.all :order => [:views.desc], :limit => @per_page, :offset => @page - 1
+    ippys = Ippy.all :order => [:views.desc], :limit => @per_page, :offset => (@page - 1)*@per_page
   elsif order == :random
     # get random
     #ippys = Ippy.all.shuffle[0..DEFAULT_PER_PAGE] # slow

@@ -1,11 +1,25 @@
-task default: %w[up]
+require 'dm-migrations'
 
+task default: %w[routes]
+
+desc "List all routes"
+task :routes do
+  puts `grep '^[get|post|put|delete].*do$' server.rb | sed 's/ do$//'`
+end
+
+desc "migrates the db"
 task :migrate do
-  require 'data_mapper'
   require './db'
   DataMapper.auto_migrate!
 end
 
+desc "upgrades the db"
+task :upgrade do
+  require './db'
+  DataMapper.auto_upgrade! 
+end
+
+desc "runs the server using rerun"
 task :up do
-  `rackup`
+  `rerun 'rackup config.ru'`
 end

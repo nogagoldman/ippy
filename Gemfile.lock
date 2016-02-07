@@ -20,9 +20,6 @@ GEM
       addressable (~> 2.1)
     dm-aggregates (1.2.0)
       dm-core (~> 1.2.0)
-    dm-chunked_query (0.3.1)
-      dm-aggregates (~> 1.0)
-      dm-core (~> 1.0)
     dm-constraints (1.2.0)
       dm-core (~> 1.2.0)
     dm-core (1.2.1)
@@ -86,7 +83,6 @@ PLATFORMS
 
 DEPENDENCIES
   data_mapper (= 1.2.0)
-  dm-chunked_query
   dm-sqlite-adapter (= 1.2.0)
   sinatra (= 1.4.6)
   sinatra-contrib (= 1.4.6)
