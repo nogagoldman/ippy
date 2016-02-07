@@ -135,7 +135,6 @@ $(document).ready(function () {
                 $("#boxfun li").click(boxclick);
             }
         }).complete(function(){
-            console.log(page);
             loading = false;
             $box.removeClass('loading');
         });

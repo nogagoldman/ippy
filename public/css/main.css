@@ -34,14 +34,14 @@ ul {
     border-radius: 2px;
 }
 
-.hwrap {
+header {
     width: 100%;
     margin: auto;
     transform: translateY(-45px);
     position: relative;
 }
 
-.hwrap:after {
+header:after {
   margin-bottom: 78px;
   content: '';
 }
@@ -55,7 +55,7 @@ ul {
   z-index: 1;
 }
 
-.hwrap .headerbox, .hwrap .stuff {
+header .headerbox, header .stuff {
   max-width: 350px;
   width:60%;
   height:78px;
@@ -64,24 +64,24 @@ ul {
   transition: all .2s;
 }
 
-.hwrap.scoot .headerbox {
+header.scoot .headerbox {
   margin-left:0;
   margin-right: inherit;
 }
 
-.hwrap .stuff {
+header .stuff {
   max-width: 350px;
   margin-top: -5px;
 }
 
-.hwrap .button {
+header .button {
   margin: 0;
   width:100%;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.hwrap .button, nav ul li a {
+header .button, nav ul li a {
   font-size: 15px;
   padding: 0.3em 0;
 }
@@ -296,7 +296,7 @@ h2 {
     border-right: 8px solid #84E6C5;
     max-width: 700px;
     width: 100%;
-    margin: 60px auto;
+    margin: 60px auto 0 auto;
     position: relative;
 }
 
@@ -616,4 +616,10 @@ input.sending {
   z-index: -1;
   padding: 4px 4px 4px 2px;
   margin-top: -4px;
+}
+
+footer {
+  margin: 2em 0;
+  font-size: 1.1em;
+  font-weight: bold;
 }
