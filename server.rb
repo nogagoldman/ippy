@@ -5,25 +5,25 @@ require './helpers'
 
 # home page
 get '/' do
-  @ippys = get_ippys('popular')
+  @ippys = get_ippys :popular
   erb :index
 end
 
 # new
 get '/new' do
-  @ippys = get_ippys('new')
+  @ippys = get_ippys :new
   erb :index
 end
 
 # random
 get '/random' do
-  @ippys = get_ippys('random')
+  @ippys = get_ippys :random
   erb :index
 end
 
 # create new ippy
 post '/ippy' do
-  ippy = Ippy.create(content: h(params["content"]))
+  ippy = Ippy.create(content: h(params['content']))
   if ippy.save
     status 200
   else
@@ -44,8 +44,8 @@ end
 
 # get all ippys (paginated)
 get '/ippy.?:format?' do
-  order = params[:order_by] || 'new'
-  @ippys = get_ippys(order)
+  order = params[:order_by].to_sym || :new
+  @ippys = get_ippys order
 
   if params[:format] == 'json'
     json :ippys => @ippys

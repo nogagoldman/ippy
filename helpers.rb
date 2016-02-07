@@ -20,33 +20,22 @@ end
 
 DEFAULT_PER_PAGE = 30
 
-# TODO: optimize this
-def paginate(query)
-  @page        = (params[:page] || 1).to_i
-  @per_page    = (params[:per_page] || DEFAULT_PER_PAGE).to_i
-
-  @pages       = query.chunks_of(@per_page)
-  @total_count = @pages.count
-  @page_count  = @pages.length
-
-  # no more pages
-  if @page > @page_count
-    return []
-  end
-
-  @pages[@page - 1]
-end
-
 # paginated based on per_page
 # orders: new, popular, random
 def get_ippys(order)
-  if order == 'new'
-    ippys = paginate(Ippy.all(:order => [:created_at.desc]))
-  elsif order == 'popular'
-    ippys = paginate(Ippy.all(:order => [:views.desc]))
-  elsif order == 'random'
-    per_page = (params[:per_page] || DEFAULT_PER_PAGE)
-    ippys = Ippy.all(:limit => per_page).shuffle
+  @page        = (params[:page] || 1).to_i
+  @per_page    = (params[:per_page] || DEFAULT_PER_PAGE).to_i
+  
+  if order == :new
+    # get new
+    ippys = Ippy.all :order => [:created_at.desc], :limit => @per_page, :offset => @page - 1
+  elsif order == :popular
+    # get popular
+    ippys = Ippy.all :order => [:views.desc], :limit => @per_page, :offset => @page - 1
+  elsif order == :random
+    # get random
+    #ippys = Ippy.all.shuffle[0..DEFAULT_PER_PAGE] # slow
+    ippys = DataMapper.repository.adapter.select('SELECT * from ippies ORDER BY RANDOM() LIMIT ?', DEFAULT_PER_PAGE)
   end
 
   @order_by = order
