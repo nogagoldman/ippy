@@ -24,6 +24,8 @@ end
 # create new ippy
 post '/ippy' do
   ippy = Ippy.create(content: h(params['content']))
+  require 'pry'
+  binding.pry
   if ippy.save
     status 200
     erb :_ippy, :locals => { :ippy => ippy }

@@ -623,3 +623,8 @@ footer {
   font-size: 1.1em;
   font-weight: bold;
 }
+
+.poweredby {
+    position: relative;
+    top: 4px;
+}
