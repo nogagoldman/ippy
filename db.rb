@@ -8,7 +8,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/ippy.db"
 class Ippy
   include DataMapper::Resource
   property :id, Serial
-  property :content, String, :required => true, :length => 16
+  property :content, String, :required => true, :length => 64
   property :happiness, Integer, :required => false, :default => 0
   property :views, Integer, :default => 0
   property :created_at, DateTime

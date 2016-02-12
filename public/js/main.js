@@ -75,6 +75,7 @@
         });
 
         // ajax forms
+        $('form').attr('novalidate', 'novalidate');
         $('form').submit(function (e) {
             var $this = $(this);
 
@@ -87,7 +88,7 @@
             // error validation
             var $input = $this.find('input[type="text"]:first');
             var val = $input.val();
-            if (val.length < 2) {
+            if (val.length < $input.attr('minlength') || val.length > $input.attr('maxlength')) {
                 $input.parent().hotClass('animated shake');
                 $input.focus();
                 e.preventDefault();
