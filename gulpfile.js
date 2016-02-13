@@ -7,29 +7,29 @@ var compressor = require('gulp-compressor');
 // compile javascript
 gulp.task('js', function () {
     gulp.src([
-            './public/js/jquery-2.2.0.min.js',
-            './public/js/clipboard.min.js',
-            './public/js/main.js'
+            './server/public/js/jquery-2.2.0.min.js',
+            './server/public/js/clipboard.min.js',
+            './server/public/js/main.js'
         ])
         .pipe(uglify())
         .pipe(concat('main.js'))
-        .pipe(gulp.dest('./public/dist/'));
+        .pipe(gulp.dest('./server/public/dist/'));
 });
 
 // compile css
 gulp.task('css', function () {
     gulp.src([
-            './public/css/normalize.css',
-            './public/css/*.css'
+            './server/public/css/normalize.css',
+            './server/public/css/*.css'
         ])
         .pipe(concat('main.css'))
         .pipe(compressor())
-        .pipe(gulp.dest('./public/dist/'));
+        .pipe(gulp.dest('./server/public/dist/'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./public/js/*', ['js']);
-    gulp.watch('./public/css/*', ['css']);
+    gulp.watch('./server/public/js/*', ['js']);
+    gulp.watch('./server/public/css/*', ['css']);
 });
 
 gulp.task('compile', ['js', 'css']);

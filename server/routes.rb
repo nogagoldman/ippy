@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/json'
-require './db'
-require './helpers'
+require_relative 'db'
+require_relative 'helpers'
 
 # home page
 get '/' do
