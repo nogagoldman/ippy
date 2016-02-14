@@ -14,7 +14,7 @@ helpers do
   end
 
   def js src
-    "<script type=\"text/javascript\" src=\"#{cache_bust src}\">"
+    "<script type=\"text/javascript\" src=\"#{cache_bust src}\"></script>"
   end
 end
 
