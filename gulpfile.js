@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
-var compressor = require('gulp-compressor');
+var cssmin = require('gulp-cssmin');
 
 // compile javascript
 gulp.task('js', function () {
@@ -23,7 +23,7 @@ gulp.task('css', function () {
             './server/public/css/*.css'
         ])
         .pipe(concat('main.css'))
-        .pipe(compressor())
+        .pipe(cssmin())
         .pipe(gulp.dest('./server/public/dist/'));
 });
 

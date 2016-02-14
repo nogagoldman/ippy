@@ -3,6 +3,10 @@ require 'sinatra/json'
 require_relative 'db'
 require_relative 'helpers'
 
+before do
+  cache_control :public, max_age: 86400
+end
+
 # home page
 get '/' do
   @ippys = get_ippys :popular

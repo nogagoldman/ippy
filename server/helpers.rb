@@ -1,5 +1,23 @@
 require 'fileutils'
 
+# simple cache buster
+def cache_bust filename
+    file = File.expand_path('../public/'+ filename, __FILE__)
+    hash = Digest::MD5.hexdigest(File.read(file))
+    "#{filename}?v=#{hash}"
+end
+
+# template helpers
+helpers do
+  def css href
+    "<link rel=\"stylesheet\" href=\"#{cache_bust href}\">"
+  end
+
+  def js src
+    "<script type=\"text/javascript\" src=\"#{cache_bust src}\">"
+  end
+end
+
 # get password
 def get_password
   FileUtils.touch('password')
