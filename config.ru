@@ -1,2 +1,2 @@
-require './server/routes'
+require './init'
 run Sinatra::Application

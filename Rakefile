@@ -4,7 +4,7 @@ task default: %w[routes]
 
 desc "List all routes"
 task :routes do
-  puts `grep '^[get|post|put|delete].*do$' server.rb | sed 's/ do$//'`
+  puts `grep '^[get|post|put|delete].*do$' app/*.rb | sed 's/ do$//'`
 end
 
 desc "migrates the db"

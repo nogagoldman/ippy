@@ -2,7 +2,7 @@ require 'fileutils'
 
 # simple cache buster
 def cache_bust filename
-    file = File.expand_path('../public/'+ filename, __FILE__)
+    file = File.expand_path('../../public/'+ filename, __FILE__)
     hash = Digest::MD5.hexdigest(File.read(file))
     "#{filename}?v=#{hash}"
 end
