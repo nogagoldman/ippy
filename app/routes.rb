@@ -10,18 +10,21 @@ end
 # home page
 get '/' do
   @ippys = get_ippys :popular
+  @title = :popular
   erb :index
 end
 
 # new
 get '/new' do
   @ippys = get_ippys :new
+  @title = :new
   erb :index
 end
 
 # random
 get '/random' do
   @ippys = get_ippys :random
+  @title = :random
   erb :index
 end
 
